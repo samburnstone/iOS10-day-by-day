@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WatermarkerExtension</string>
+	<string>Watermarker</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,6 +27,7 @@
 			<key>PHSupportedMediaTypes</key>
 			<array>
 				<string>Image</string>
+				<string>LivePhoto</string>
 			</array>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
