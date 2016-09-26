@@ -33,7 +33,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
-                        <outlet property="photoView" destination="GcO-q6-Y4v" id="R0L-rF-TOt"/>
+                        <outlet property="photoView" destination="GcO-q6-Y4v" id="UuY-c1-iQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
