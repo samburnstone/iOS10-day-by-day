@@ -12,7 +12,36 @@
 		2780C0931D990F1B00866AA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2780C0911D990F1B00866AA4 /* Main.storyboard */; };
 		2780C0951D990F1B00866AA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2780C0941D990F1B00866AA4 /* Assets.xcassets */; };
 		2780C0981D990F1B00866AA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2780C0961D990F1B00866AA4 /* LaunchScreen.storyboard */; };
+		2780C0A61D9910C200866AA4 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780C0A51D9910C200866AA4 /* PhotosUI.framework */; };
+		2780C0A81D9910C200866AA4 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2780C0A71D9910C200866AA4 /* Photos.framework */; };
+		2780C0AB1D9910C200866AA4 /* PhotoEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780C0AA1D9910C200866AA4 /* PhotoEditingViewController.swift */; };
+		2780C0AE1D9910C200866AA4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2780C0AC1D9910C200866AA4 /* MainInterface.storyboard */; };
+		2780C0B21D9910C200866AA4 /* WatermarkerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2780C0A31D9910C200866AA4 /* WatermarkerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2780C0B01D9910C200866AA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2780C0821D990F1B00866AA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2780C0A21D9910C200866AA4;
+			remoteInfo = WatermarkerExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2780C0B61D9910C200866AA4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2780C0B21D9910C200866AA4 /* WatermarkerExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2780C08A1D990F1B00866AA4 /* LivePhotoWatermarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivePhotoWatermarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +51,12 @@
 		2780C0941D990F1B00866AA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2780C0971D990F1B00866AA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2780C0991D990F1B00866AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2780C0A31D9910C200866AA4 /* WatermarkerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatermarkerExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2780C0A51D9910C200866AA4 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		2780C0A71D9910C200866AA4 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		2780C0AA1D9910C200866AA4 /* PhotoEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingViewController.swift; sourceTree = "<group>"; };
+		2780C0AD1D9910C200866AA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2780C0AF1D9910C200866AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +67,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2780C0A01D9910C200866AA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780C0A61D9910C200866AA4 /* PhotosUI.framework in Frameworks */,
+				2780C0A81D9910C200866AA4 /* Photos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -39,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				2780C08C1D990F1B00866AA4 /* LivePhotoWatermarker */,
+				2780C0A91D9910C200866AA4 /* WatermarkerExtension */,
+				2780C0A41D9910C200866AA4 /* Frameworks */,
 				2780C08B1D990F1B00866AA4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				2780C08A1D990F1B00866AA4 /* LivePhotoWatermarker.app */,
+				2780C0A31D9910C200866AA4 /* WatermarkerExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +111,25 @@
 			path = LivePhotoWatermarker;
 			sourceTree = "<group>";
 		};
+		2780C0A41D9910C200866AA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2780C0A51D9910C200866AA4 /* PhotosUI.framework */,
+				2780C0A71D9910C200866AA4 /* Photos.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2780C0A91D9910C200866AA4 /* WatermarkerExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2780C0AA1D9910C200866AA4 /* PhotoEditingViewController.swift */,
+				2780C0AC1D9910C200866AA4 /* MainInterface.storyboard */,
+				2780C0AF1D9910C200866AA4 /* Info.plist */,
+			);
+			path = WatermarkerExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,15 +140,34 @@
 				2780C0861D990F1B00866AA4 /* Sources */,
 				2780C0871D990F1B00866AA4 /* Frameworks */,
 				2780C0881D990F1B00866AA4 /* Resources */,
+				2780C0B61D9910C200866AA4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2780C0B11D9910C200866AA4 /* PBXTargetDependency */,
 			);
 			name = LivePhotoWatermarker;
 			productName = LivePhotoWatermarker;
 			productReference = 2780C08A1D990F1B00866AA4 /* LivePhotoWatermarker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2780C0A21D9910C200866AA4 /* WatermarkerExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2780C0B51D9910C200866AA4 /* Build configuration list for PBXNativeTarget "WatermarkerExtension" */;
+			buildPhases = (
+				2780C09F1D9910C200866AA4 /* Sources */,
+				2780C0A01D9910C200866AA4 /* Frameworks */,
+				2780C0A11D9910C200866AA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WatermarkerExtension;
+			productName = WatermarkerExtension;
+			productReference = 2780C0A31D9910C200866AA4 /* WatermarkerExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +180,11 @@
 				ORGANIZATIONNAME = ShinobiControls;
 				TargetAttributes = {
 					2780C0891D990F1B00866AA4 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XJ74287KY8;
+						ProvisioningStyle = Automatic;
+					};
+					2780C0A21D9910C200866AA4 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = XJ74287KY8;
 						ProvisioningStyle = Automatic;
@@ -115,6 +205,7 @@
 			projectRoot = "";
 			targets = (
 				2780C0891D990F1B00866AA4 /* LivePhotoWatermarker */,
+				2780C0A21D9910C200866AA4 /* WatermarkerExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +221,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2780C0A11D9910C200866AA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780C0AE1D9910C200866AA4 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -142,7 +241,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2780C09F1D9910C200866AA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2780C0AB1D9910C200866AA4 /* PhotoEditingViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2780C0B11D9910C200866AA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2780C0A21D9910C200866AA4 /* WatermarkerExtension */;
+			targetProxy = 2780C0B01D9910C200866AA4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2780C0911D990F1B00866AA4 /* Main.storyboard */ = {
@@ -159,6 +274,14 @@
 				2780C0971D990F1B00866AA4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2780C0AC1D9910C200866AA4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2780C0AD1D9910C200866AA4 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -260,6 +383,7 @@
 		2780C09D1D990F1B00866AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XJ74287KY8;
 				INFOPLIST_FILE = LivePhotoWatermarker/Info.plist;
@@ -273,12 +397,39 @@
 		2780C09E1D990F1B00866AA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XJ74287KY8;
 				INFOPLIST_FILE = LivePhotoWatermarker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shinobicontrols.LivePhotoWatermarker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2780C0B31D9910C200866AA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = XJ74287KY8;
+				INFOPLIST_FILE = WatermarkerExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinobicontrols.LivePhotoWatermarker.WatermarkerExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2780C0B41D9910C200866AA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = XJ74287KY8;
+				INFOPLIST_FILE = WatermarkerExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shinobicontrols.LivePhotoWatermarker.WatermarkerExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -300,6 +451,15 @@
 			buildConfigurations = (
 				2780C09D1D990F1B00866AA4 /* Debug */,
 				2780C09E1D990F1B00866AA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2780C0B51D9910C200866AA4 /* Build configuration list for PBXNativeTarget "WatermarkerExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2780C0B31D9910C200866AA4 /* Debug */,
+				2780C0B41D9910C200866AA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
