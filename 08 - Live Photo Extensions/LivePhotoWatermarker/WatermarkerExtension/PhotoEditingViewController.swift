@@ -12,13 +12,13 @@ import PhotosUI
 
 class PhotoEditingViewController: UIViewController, PHContentEditingController {
 
-    var input: PHContentEditingInput?
-    
-    @IBOutlet weak var photoView: PHLivePhotoView!
+    var input: PHContentEditingInput!
     
     lazy var livePhotoContext: PHLivePhotoEditingContext = {
-        return PHLivePhotoEditingContext(livePhotoEditingInput: self.input!)!
+        return PHLivePhotoEditingContext(livePhotoEditingInput: self.input)!
     }()
+    
+    @IBOutlet weak var photoView: PHLivePhotoView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +49,16 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController {
             photoView.livePhoto = contentEditingInput.livePhoto
         }
         
+        // Store the input so we can access it later and create our editing context
         input = contentEditingInput
         
-        // Show alert
-        requestWatermarkDetails()
+        applyBlur()
     }
     
     func finishContentEditing(completionHandler: @escaping ((PHContentEditingOutput?) -> Void)) {
         
         let output = PHContentEditingOutput(contentEditingInput: self.input!)
-
+        
         livePhotoContext.saveLivePhoto(to: output) {
             success, error in
             if success {
@@ -85,102 +85,49 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController {
 
 extension PhotoEditingViewController {
     
-    fileprivate func updateLivePhotoView() {
+    func applyBlur() {
+        let blurLevel: CGFloat = 10
+        
+        let timeOfStillPhoto = CMTimeGetSeconds(livePhotoContext.photoTime)
+        let duration = CMTimeGetSeconds(livePhotoContext.duration)
+        
+        livePhotoContext.frameProcessor = {
+            [unowned self]
+            frame, error in
+            
+            let normalizedFrameTime = self.normalizedTimeInterval(for: frame,
+                                                                  withDuration: duration,
+                                                                  withTimeOfStillPhoto: timeOfStillPhoto)
+            
+            let blurLevel = fabs(normalizedFrameTime) * blurLevel
+            
+            print(time)
+            
+            return frame.image.applyingFilter("CIGaussianBlur", withInputParameters: [kCIInputRadiusKey : blurLevel])
+        }
+        
+        updateLivePhotoView()
+    }
+    
+    private func updateLivePhotoView() {
         let size = input!.displaySizeImage!.size
         livePhotoContext.prepareLivePhotoForPlayback(withTargetSize: size, options: nil) {
             [weak self]
             livePhoto, error in
             self?.photoView.livePhoto = livePhoto
         }
-
     }
-}
-
-extension PhotoEditingViewController {
     
-    /// Brings up UI to allow the user to input the text they wish to watermark their photo with.
-    fileprivate func requestWatermarkDetails() {
+    private func normalizedTimeInterval(for frame: PHLivePhotoFrame,
+                                        withDuration duration: Float64,
+                                        withTimeOfStillPhoto timeOfStillPhoto: Float64) -> CGFloat {
         
-        let alert = UIAlertController(title: "Watermark Title", message: "What would like to scrawl over your lovely photo?", preferredStyle: .alert)
         
-        alert.addTextField(configurationHandler: {
-            textfield in
-            textfield.placeholder = "John Appleseed"
-        })
+        let timeOfFrame = CMTimeGetSeconds(frame.time)
         
-        // On cancellation, simply dimiss the extension
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancelAction)
-        
-        let watermarkAction = UIAlertAction(title: "Add", style: .default) {
-            [weak self]
-            _ in
-            guard let watermarkText = alert.textFields?[0].text else { return }
-            
-            let prefixedWatermarkText = "© \(watermarkText)"
-            
-            self?.applyWatermark(with: prefixedWatermarkText)
-            self?.updateLivePhotoView()
+        if timeOfFrame < timeOfStillPhoto {
+            return CGFloat((timeOfFrame - timeOfStillPhoto) / timeOfStillPhoto)
         }
-        alert.addAction(watermarkAction)
-        
-        present(alert, animated: true)
-    }
-
-    
-    fileprivate func applyWatermark(with title: String) {
-        guard let image = UIImage.image(from: title, with: photoView.bounds.size)
-            else {
-                fatalError("Could not create image")
-        }
-
-        let watermarkImage = CIImage(cgImage: image.cgImage!)
-        
-        livePhotoContext.frameProcessor = {
-            frame, _ in
-            
-            return frame.image.applyingFilter("CIGaussianBlur", withInputParameters: [kCIInputRadiusKey: 10])
-        }
-    }
-}
-
-extension UIImage {
-    
-    /// Creates an image with the given text string.
-    static func image(from text: String, with size: CGSize) -> UIImage? {
-        
-        // To cater for the LivePhoto zooming, we need to add a bit of padding between the text and the edge of the screen
-        let insets = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 0)
-        
-        let font = UIFont(name: "Marker Felt", size: 40)!
-        
-        // Draw the text in an an image context and return it
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        
-        let imageRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        
-        let image = UIImage()
-        image.draw(in: imageRect)
-        
-        let convertedString = text as NSString
-        
-        let attributes = [
-            NSFontAttributeName : font,
-            NSForegroundColorAttributeName : UIColor.white
-        ]
-        
-        let textSize = convertedString.size(attributes: attributes)
-        let textRect = CGRect(x: insets.left,
-                              y: (size.height - insets.bottom - textSize.height),
-                              width: textSize.width,
-                              height: textSize.height)
-        
-        convertedString.draw(in: textRect, withAttributes: attributes)
-        
-        let textImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        return textImage
+        return CGFloat((timeOfFrame - timeOfStillPhoto) / (duration - timeOfStillPhoto))
     }
 }
