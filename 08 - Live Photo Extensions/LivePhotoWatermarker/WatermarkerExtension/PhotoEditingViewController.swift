@@ -14,6 +14,8 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController {
 
     var input: PHContentEditingInput?
     
+    @IBOutlet weak var photoView: PHLivePhotoView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,6 +38,11 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController {
         // Present content for editing, and keep the contentEditingInput for use when closing the edit session.
         // If you returned true from canHandleAdjustmentData:, contentEditingInput has the original image and adjustment data.
         // If you returned false, the contentEditingInput has past edits "baked in".
+        
+        if contentEditingInput.mediaType == .image && contentEditingInput.mediaSubtypes.contains(.photoLive) {
+            photoView.livePhoto = contentEditingInput.livePhoto
+        }
+        
         input = contentEditingInput
     }
     
